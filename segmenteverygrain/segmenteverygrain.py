@@ -612,7 +612,8 @@ def sam_segmentation(sam, big_im, big_im_pred, coords, labels, min_area, plot_im
     all_grains = merge_overlapping_polygons(all_grains, new_grains, comps, min_area)
 
     print('creating labeled image...')
-    labels, mask_all = create_labeled_image(all_grains, big_im, big_im_pred, min_area)
+    if len(all_grains) > 0:
+        labels, mask_all = create_labeled_image(all_grains, big_im, big_im_pred, min_area)
     if plot_image:
         fig, ax = plt.subplots(figsize=(15,10))
         ax.imshow(big_im)
